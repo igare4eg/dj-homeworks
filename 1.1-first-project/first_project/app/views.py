@@ -39,4 +39,10 @@ def workdir_view(request):
     return HttpResponse(workdir_request)
     # raise NotImplemented
 def hello(request):
-    return HttpResponse('Hello from django')
+    name = request.GET.get("name")
+    age = int(request.GET.get("age", 20))
+    return HttpResponse(f'Hello {name}, your old is {age}')
+
+def sum(request, a, b):
+    result = a + b
+    return HttpResponse(f'Sum = {result}')
