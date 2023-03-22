@@ -39,9 +39,12 @@ def workdir_view(request):
     return HttpResponse(workdir_request)
     # raise NotImplemented
 def hello(request):
-    name = request.GET.get("name")
-    age = int(request.GET.get("age", 20))
-    return HttpResponse(f'Hello {name}, your old is {age}')
+    context = {
+        'test':5,
+        'data': [1,5,8],
+        'val': "hello",
+    }
+    return render(request, 'demo.html', context)
 
 def sum(request, a, b):
     result = a + b
