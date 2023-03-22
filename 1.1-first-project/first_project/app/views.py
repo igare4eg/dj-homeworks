@@ -3,6 +3,7 @@ import os
 
 from django.http import HttpResponse
 from django.shortcuts import render, reverse
+from django.core.paginator import Paginator
 
 
 def home_view(request):
@@ -49,3 +50,12 @@ def hello(request):
 def sum(request, a, b):
     result = a + b
     return HttpResponse(f'Sum = {result}')
+
+CONTENT = [str(i) for i in range(10000)]
+def pagi(request):
+    paginator = Paginator(CONTENT, 10)
+    page = paginator.get_page(5)
+    context = {
+        'page': page
+    }
+    return render(request, 'pagi.html', context)
