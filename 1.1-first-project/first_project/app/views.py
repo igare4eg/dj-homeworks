@@ -53,8 +53,9 @@ def sum(request, a, b):
 
 CONTENT = [str(i) for i in range(10000)]
 def pagi(request):
+    page_number = int(request.GET.get("page", 1))
     paginator = Paginator(CONTENT, 10)
-    page = paginator.get_page(5)
+    page = paginator.get_page(page_number)
     context = {
         'page': page
     }
