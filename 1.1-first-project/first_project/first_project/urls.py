@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from app.views import home_view, time_view, workdir_view, hello, sum, pagi
+from app.views import home_view, time_view, workdir_view, hello, sum, pagi, create_car, list_car, create_person,list_person
 '''HI'''
 
 urlpatterns = [
@@ -29,4 +29,8 @@ urlpatterns = [
     path('hello/', hello),
     path('sum/<int:a>/<int:b>/', sum),
     path('pagi/', pagi),
+    path('new_car/', create_car),
+    path('cars/', list_car),
+    path('new_person/', create_person),
+    path('people/', list_person),
 ]
