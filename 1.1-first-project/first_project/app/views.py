@@ -5,7 +5,7 @@ import random
 from django.http import HttpResponse
 from django.shortcuts import render, reverse
 from django.core.paginator import Paginator
-from app.models import Car, Person
+from app.models import Car, Person, Order
 
 
 
@@ -89,3 +89,9 @@ def list_person(request):
     person_objects = Person.objects.all()
     people = [f'{p.name}: {p.car}' for p in person_objects]
     return HttpResponse('<br>'.join(people))
+
+
+def list_orders(request):
+    orders = Order.objects.filter(positions__product__price__lte=400)
+    context = {'orders': orders}
+    return render(request, 'orders.html', context)
