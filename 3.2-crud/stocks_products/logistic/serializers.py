@@ -30,9 +30,8 @@ class StockSerializer(serializers.ModelSerializer):
         # в нашем случае: таблицу StockProduct
         # с помощью списка positions
         for i in positions:
-            new_stock_product = StockProduct.objects.create(product=i['product'], stock=stock, quantity=i['quantity'],
-                                                            price=i['price'])
-            stock.positions.add(new_stock_product)
+            StockProduct.objects.create(product=i['product'], stock=stock, quantity=i['quantity'],
+                                        price=i['price'])
         return stock
 
     def update(self, instance, validated_data):
